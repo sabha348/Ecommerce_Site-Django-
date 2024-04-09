@@ -1,0 +1,8 @@
+{% extends 'store/main.html' %}
+{% block content %}
+<div style="text-align: center;">
+    <h2>{{ product.name }}</h2>
+    <img src="{{ product.imageURL }}" style="max-width: 100%;">
+    <p>Price: ₹{{ product.price }}</p>
+</div>
+{% endblock content %}

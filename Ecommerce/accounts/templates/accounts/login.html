@@ -1,0 +1,51 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'accounts/css/login.css' %}">
+</head>
+<body>
+    <div class="container">
+        <div class="well">
+            <form action="{% url 'login_request' %}" method="POST">
+                {% csrf_token %}
+                <hggroup>
+                    <h1>Welcome Back</h1>
+                    <h2>Log in to your account</h2>
+                </hggroup>
+                <div>
+                    <input type="text" name="username" id="login-username" required>
+                    <label for="login-username">Username</label>
+                </div>
+                <div>
+                    <input type="password" name="password" id="login-passwd" required>
+                    <label for="login-passwd">Password</label>
+                </div>
+                <!-- <a href="#" id="forgot-passwd">Forgot Password?</a> -->
+                <button class="button" id="btn-submit">
+                    <span class="button-text">Log In</span>
+                    <div class="button-loader">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
+                </button>
+            </form>
+            {% if messages %}
+                        {% for message in messages %}
+                            <div class="alert alert-{{ message.tags }} alert-error">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+            {% endif %}
+            <p>Don't have an account? <a href="{% url 'register_request' %}">Sign Up</a>.</p>
+            <p><a href="{% url 'store' %}">Back To Store</a></p>
+        </div>
+        <img src="{% static 'accounts/img/Login_Watch.jpg' %}">
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="{% static 'accounts/js/login.js' %}"></script>
+</body>
+</html>
+
